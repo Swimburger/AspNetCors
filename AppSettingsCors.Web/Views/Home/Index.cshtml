@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>CORS Policy Demo</title>
+</head>
+<body>
+    <select name="action">
+        <option value="https://localhost:44331/api/policydemo/AB">A &amp; B</option>
+        <option value="https://localhost:44331/api/policydemo/A">A</option>
+        <option value="https://localhost:44331/api/policydemo/B">B</option>
+        <option value="https://localhost:44331/api/policydemo/C">C</option>
+    </select>
+    <button type="button">Call action</button>
+    <ul>
+    </ul>
+    @Scripts.Render("~/bundles/jquery")
+    <script>
+        // IIFE to not pollute global scope
+        (function () {
+            var $actionSelect = $('select[name="action"]');
+            var $list = $('ul');
+            $('button').click(function () {
+                var actionUrl = $actionSelect.val();
+                $.ajax({
+                    url: actionUrl,
+                    type: "GET",
+                    crossDomain: true,
+                    success: function (data) {
+                        $list.append("<li>" + data + "</li>")
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        $list.append("<li>" + textStatus + "</li>")
+                    }
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
