@@ -1,0 +1,1 @@
+This repository hosts the code for "[Configure CORS using AppSettings or Custom Configuration Sections in ASP.NET Web API](https://swimburger.net/blog/dotnet/configure-cors-using-appsettings-or-custom-configuration-sections-in-aspnet-web-api#use-appsettings-to-configure-cors)".
